@@ -1,0 +1,84 @@
+services:
+  ##########
+  # SHARED
+  ##########
+  Seedtag.shared.Logger:
+    class: ../../../../contexts/shared/infrastructure/WinstonLogger
+    arguments: []
+
+  ##############################
+  ########## USERS
+  ##############################
+  Seedtag.users.UserRepository:
+    class: ../../../../contexts/seedtag/users/infrastructure/TypeormUserRepository
+    arguments: []
+
+  #***********
+  # Create
+  #***********
+  Seedtag.users.UserCreate:
+    class: ../../../../contexts/seedtag/users/application/UserCreate
+    arguments: ['@Seedtag.users.UserRepository']
+
+  Apps.seedtag.controllers.user.UserCreateController:
+    class: ../../controllers/user/UserCreateController
+    arguments: ['@Seedtag.users.UserCreate']
+
+  #***********
+  # Get
+  #***********
+  Seedtag.users.UserGet:
+      class: ../../../../contexts/seedtag/users/application/UserGet
+      arguments: ['@Seedtag.users.UserRepository']
+
+  Apps.seedtag.controllers.user.UserGetController:
+    class: ../../controllers/user/UserGetController
+    arguments: ['@Seedtag.users.UserGet']
+
+  #***********
+  # Edit
+  #***********
+  Seedtag.users.UserEdit:
+      class: ../../../../contexts/seedtag/users/application/UserEdit
+      arguments: ['@Seedtag.users.UserRepository']
+
+  Apps.seedtag.controllers.user.UserEditController:
+    class: ../../controllers/user/UserEditController
+    arguments: ['@Seedtag.users.UserEdit']
+
+  #***********
+  # Deactivate
+  #***********
+  Seedtag.users.UserDeactivate:
+      class: ../../../../contexts/seedtag/users/application/UserDeactivate
+      arguments: ['@Seedtag.users.UserRepository']
+
+  Apps.seedtag.controllers.user.UserDeactivateController:
+    class: ../../controllers/user/UserDeactivateController
+    arguments: ['@Seedtag.users.UserDeactivate']
+
+  ##############################
+  ########## AUTH
+  ##############################
+
+  #***********
+  # Login
+  #***********
+  Seedtag.auth.AuthLogin:
+    class: ../../../../contexts/seedtag/auth/application/AuthLogin
+    arguments: ['@Seedtag.users.UserRepository']
+
+  Apps.seedtag.controllers.auth.AuthLoginController:
+    class: ../../controllers/auth/AuthLoginController
+    arguments: ['@Seedtag.auth.AuthLogin']
+
+  #***********
+  # Change Password
+  #***********
+  Seedtag.auth.AuthChangePassword:
+    class: ../../../../contexts/seedtag/auth/application/AuthChangePassword
+    arguments: ['@Seedtag.users.UserRepository']
+
+  Apps.seedtag.controllers.auth.AuthChangePasswordController:
+    class: ../../controllers/auth/AuthChangePasswordController
+    arguments: ['@Seedtag.auth.AuthChangePassword']

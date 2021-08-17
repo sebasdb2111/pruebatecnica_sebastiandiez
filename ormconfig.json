@@ -1,0 +1,25 @@
+{
+   "type": "mysql",
+   "host": "0.0.0.0",
+   "port": 3360,
+   "username": "root",
+   "password": "",
+   "database": "seedtag_db",
+   "synchronize": false,
+   "logging": false,
+   "migrationsTableName": "seedtag_db_migrations",
+   "entities": [
+      "src/contexts/seedtag/**/domain/entity/*.ts"
+   ],
+   "migrations": [
+      "migrations/*.ts"
+   ],
+   "subscribers": [
+      "subscribers/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/contexts/seedtag/**/domain/entity",
+      "migrationsDir": "migrations",
+      "subscribersDir": "subscribers"
+   }
+}
